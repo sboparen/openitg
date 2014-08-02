@@ -40,3 +40,7 @@ Release-SSE2
 # Windows build artefacts
 src/verstub.cpp
 src/version.bin
+
+/autoconf/compile
+/autoconf/test-driver
+/home-tmp.zip

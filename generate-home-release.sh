@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 rm -f home-tmp.zip
 if [ "`which zip`x" = "x" ]; then
@@ -15,7 +16,7 @@ zip -d home-tmp.zip 'Themes/ps2onpc/*'
 zip -d home-tmp.zip 'Themes/ps2/*'
 
 (cd assets/game-data && zip -r ../../home-tmp.zip *)
-(cd assets/patch-data/patch-dec && zip -r ../../../home-tmp.zip *)
-zip -d home-tmp.zip 'Cache/*'
+(cd assets/patch-data && zip -r ../../home-tmp.zip Data NoteSkins Themes)
+zip -d home-tmp.zip 'Cache/*' || true
 zip home-tmp.zip FAQ.txt ReleaseNotes.txt WhoToSue.txt
 (cd src && zip ../home-tmp.zip openitg GtkModule.so)
