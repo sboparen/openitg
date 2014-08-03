@@ -54,8 +54,10 @@ void MenuTimer::Update( float fDeltaTime )
 { 
 	ActorFrame::Update( fDeltaTime );
 
-	if( m_bPaused )
+	if( m_bPaused ) {
+		SetText( TIMER_PAUSE_SECONDS );
 		return;
+	}
 
 	// run down the stall time if any
 	if( m_fStallSeconds > 0 )
@@ -148,6 +150,22 @@ void MenuTimer::Start()
 
 void MenuTimer::SetText( float fSeconds )
 {
+	// Display the real time if the menu timer is disabled.
+	// TODO(sboparen): This should probably be an option.
+	if(fSeconds > 99 || fSeconds < 0.01) {
+		time_t t0 = time(0);
+		struct tm *t;
+		t = localtime(&t0);
+		char hour[8] = {0}, minute[8] = {0};
+		if(t) {
+			strftime(hour,   4, "%l", t);
+			strftime(minute, 4, "%M", t);
+		}
+		m_text[0].SetText(hour[0]==' ' ? hour+1 : hour);
+		m_text[1].SetText(minute);
+		return;
+	}
+
 	Lua *L = LUA->Get();
 
 	for( int i=0; i<NUM_MENU_TIMER_TEXTS; i++ )
