@@ -1,6 +1,6 @@
 <ActorFrame>
 	<children>
-		<!-- OpenITG: if the song is custom or has no banner, display the full title. -->
+		<!-- Always display the full song title. -->
 		<BitmapText
 			Text=""
 			File="Common Normal"
@@ -9,9 +9,7 @@
 			OffCommand="accelerate,0.3;addy,-SCREEN_CENTER_X"
 			UpdateCommand="%function(self)
 					local song = GAMESTATE:GetCurrentSong()
-					if song:IsCustomSong() or not song:GetBannerPath() then
-						self:settext( song:GetDisplayFullTitle() )
-					end
+					self:settext( song:GetDisplayFullTitle() )
 				end"
 		/>
 		<ActorFrame
