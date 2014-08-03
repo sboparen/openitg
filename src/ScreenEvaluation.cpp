@@ -1451,6 +1451,14 @@ void ScreenEvaluation::MenuStart( PlayerNumber pn )
 
 void ScreenEvaluation::EndScreen()
 {
+	// Save a screenshot after every song.
+	// Doing it here, as the evaluation screen is just ending,
+	// seems to be the most robust, although I've seen the
+	// screenshot come a frame or two late.
+	// TODO(sboparen): This should probably be an option.
+	SaveScreenshot("Screenshots/",
+		/*compressed*/true, /*signature*/false);
+
 	TweenOffScreen();
 
 	FOREACH_PlayerNumber( p )
