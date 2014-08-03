@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+CELPATH=../../../d4/NoteSkins/dance/cel/
+test -e $CELPATH
+test ! -e couples
+cp -r $CELPATH couples
+for src in couples/Down*Hold*.png; do
+  dst="$src"
+  convert "$src" -fill orange -tint 100 "$dst"
+done
+for src in couples/*Down*Roll*.png; do
+  dst="$src"
+  convert "$src" -fill 'rgb(40,0,255)' -tint 200 "$dst"
+done
