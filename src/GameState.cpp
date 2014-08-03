@@ -541,6 +541,10 @@ void GameState::FinishStage()
 			PROFILEMAN->SaveAllProfiles();
 		}
 	}
+
+	// Reset mods after every song.
+	// TODO(sboparen): This should probably be an option.
+	ResetCurrentOptions();
 }
 
 void GameState::SaveCurrentSettingsToProfile( PlayerNumber pn )
