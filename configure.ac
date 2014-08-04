@@ -328,15 +328,9 @@ else
 fi
 
 if test "$have_git_repo" = "yes"; then
-	build_version=`git tag`
+	build_version=`git describe --abbrev=0 --dirty=", untracked"`
 	build_rev_date=`git log -1 --pretty="format:%ad" --date="short"`
-	build_rev_tag=`git describe`
-
-	# If the rev_tag and the version are the same, this is
-	# an official release; otherwise, it's a dev build.
-	if test "$build_version" != "$build_rev_tag"; then
-		build_version="$build_version DEV"
-	fi
+	build_rev_tag=`git describe --dirty=", untracked"`
 
 	# HACK: the arcade chroot's git version is too old to understand our
 	# desired YYYY-MM-DD format. If we don't get a date in that format,
@@ -348,6 +342,12 @@ if test "$have_git_repo" = "yes"; then
 	if ! [ expr "$build_rev_date" : '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$' > /dev/null ]; then
 		build_rev_date=`date +%Y-%m-%d`
 	fi
+
+	if test "$build_version" != "$build_rev_tag"; then
+		commit=`git rev-parse --short HEAD`
+		build_version="$build_version, commit $commit"
+	fi
+	build_version=`echo "$build_version" | sed -e 's/^v/version /'`
 else
 	build_version="unknown version"
 	build_rev_date="unknown date"

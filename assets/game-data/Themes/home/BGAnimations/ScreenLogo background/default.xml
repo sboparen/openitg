@@ -48,8 +48,15 @@
 	<Layer
 		Class="BitmapText"
 		Font="_eurostile normal"
-		Text="@'&xa9; 2008-2009 BoXoRRoXoRs, r' .. GetRevision()"
-		OnCommand="x,SCREEN_CENTER_X;y,SCREEN_BOTTOM-17;zoom,0.5;shadowlength,2;diffusealpha,0.8"
+		Text="@'&xa9; 2008-2009 BoXoRRoXoRs, 2012-2014 UW DDR Club (facebook.com/uwddr)'"
+		OnCommand="x,SCREEN_CENTER_X;y,SCREEN_BOTTOM-62;zoom,0.5;shadowlength,2;diffusealpha,0.8"
+	/>
+
+	<Layer
+		Class="BitmapText"
+		Font="_eurostile normal"
+		Text="@'github.com/sboparen/openitg, ' .. OPENITG_BUILD_VERSION"
+		OnCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+7;zoom,0.5;shadowlength,2;diffusealpha,0.8"
 	/>
 
 	<Layer

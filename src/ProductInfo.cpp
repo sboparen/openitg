@@ -127,6 +127,9 @@ void SetVersionGlobals( lua_State* L )
 		s.MakeUpper();
 		LUA->SetGlobal( "VERSION_" + s, ToToken(v) );
 	}
+
+	CString version_str = BUILD_VERSION;
+	LUA->SetGlobal( "OPENITG_BUILD_VERSION", version_str );
 }
 
 REGISTER_WITH_LUA_FUNCTION( SetVersionGlobals );
