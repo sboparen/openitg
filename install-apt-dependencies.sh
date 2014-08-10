@@ -7,6 +7,7 @@ sudo apt-get install \
   libasound-dev \
   libgl-dev \
   libglu-dev \
+  libgtk2.0-dev \
   libjpeg-dev \
   liblua5.1-dev \
   libmad0-dev \
