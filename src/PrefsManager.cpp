@@ -80,7 +80,7 @@ PrefsManager::PrefsManager() :
 	m_bFastLoad				( "FastLoad",				false ),
 
 	m_bOnlyDedicatedMenuButtons	( "OnlyDedicatedMenuButtons",	false ),
-	m_bMenuTimer				( "MenuTimer",					true ),
+	m_bMenuTimer				( "MenuTimer",					false ),
 	m_bShowDanger				( "ShowDanger",					true ),
 
 	m_fJudgeWindowScale				( "JudgeWindowScale",				1.0f ),
@@ -180,7 +180,7 @@ PrefsManager::PrefsManager() :
 	m_bEasterEggs				( "EasterEggs",					true ),
 	m_bEasterEggs2				( "EasterEggs2",				true ),
 	m_MarvelousTiming			( "MarvelousTiming",			MARVELOUS_EVERYWHERE ),
-	m_bEventMode				( "EventMode",					false ),
+	m_bEventMode				( "EventMode",					true ),
 	m_iCoinsPerCredit			( "CoinsPerCredit",				1 ),
 	m_iSongsPerPlay				( "SongsPerPlay",				3 ),
 
