@@ -30,6 +30,10 @@ src/libresample/tests/testresample
 run
 build/artifacts/
 
+/autoconf/compile
+/autoconf/test-driver
+/*.zip
+
 # Visual Studio build artefacts
 *.obj
 build-vs2008
