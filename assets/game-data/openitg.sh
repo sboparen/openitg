@@ -3,9 +3,8 @@ set -e
 cd "$(dirname "$(readlink -f ${BASH_SOURCE[0]})")"
 
 # Create links for data shared between versions.
-if [ ! -e Songs ]; then
-    ln -s ../Songs .
-fi
+ln -s ../Songs . || true
+ln -s ../../MachineProfile Data/ || true
 
 # Create or update launcher on desktop.
 cat >~/Desktop/OpenITG.desktop <<EOF
