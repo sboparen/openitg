@@ -35,6 +35,13 @@ cp {ReleaseNotes.txt,WhoToSue.txt} $HOME_TMP_DIR/
 cp src/{openitg,GtkModule.so} $HOME_TMP_DIR/
 
 CWD=`pwd`
-(cd $HOME_TMP_DIR && zip -u -r $CWD/home-tmp.zip *)
+#(cd $HOME_TMP_DIR && zip -u -r $CWD/home-tmp.zip *)
+(
+    set -e
+    ts="$(git log -1 --pretty="format:%ad" --date=format:"%Y%m%d%H%M")"
+    cd $HOME_TMP_DIR
+    find . -print0 | xargs -0 touch -t "$ts"
+    find . | sort | xargs -d '\n' zip -X $CWD/home-tmp.zip
+)
 
 rm -rf $HOME_TMP_DIR
