@@ -5,10 +5,22 @@ source common.sh
 has_command "zip" "zip command not found"
 has_file "src/openitg" "where's the openitg binary?"
 
-rm -f home-tmp.zip
+build_version=`git describe --abbrev=0`
+build_rev_tag=`git describe`
+if test "$build_version" != "$build_rev_tag"; then
+    build_version="${build_version}DEV"
+fi
+platform=unknown
+if grep "Linux Mint 14 Nadia" /etc/lsb-release >/dev/null 2>/dev/null; then
+    platform=mint14
+fi
+NAME="openitg-$build_version-$platform"
 
-HOME_TMP_DIR=/tmp/openitg-home-tmp
+rm -f "$NAME.zip"
 
+HOME_TMP_DIR=/tmp/openitg-home-tmp/$NAME
+
+rm -rf /tmp/openitg-home-tmp
 mkdir -p $HOME_TMP_DIR
 
 # Copy game content
@@ -39,9 +51,9 @@ CWD=`pwd`
 (
     set -e
     ts="$(git log -1 --pretty="format:%ad" --date=format:"%Y%m%d%H%M")"
-    cd $HOME_TMP_DIR
+    cd /tmp/openitg-home-tmp
     find . -print0 | xargs -0 touch -t "$ts"
-    find . | sort | xargs -d '\n' zip -X $CWD/home-tmp.zip
+    find . | sort | xargs -d '\n' zip -X "$CWD/$NAME.zip"
 )
 
-rm -rf $HOME_TMP_DIR
+rm -rf /tmp/openitg-home-tmp
