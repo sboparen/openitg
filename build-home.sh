@@ -1,7 +1,11 @@
 #!/bin/bash
 
 ./autogen.sh
-./configure --with-x --with-gnu-ld
+if grep "Linux Mint 14 Nadia" /etc/lsb-release >/dev/null 2>/dev/null; then
+    ./configure --with-x --with-gnu-ld --with-legacy-ffmpeg
+else
+    ./configure --with-x --with-gnu-ld
+fi
 make clean
 if [ "x$1" = "x" ];
 then
