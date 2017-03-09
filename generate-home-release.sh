@@ -5,6 +5,8 @@ source common.sh
 has_command "zip" "zip command not found"
 has_file "src/openitg" "where's the openitg binary?"
 
+strip --strip-unneeded --remove-section=.note.gnu.build-id src/openitg
+
 build_version=`git describe --abbrev=0`
 build_rev_tag=`git describe`
 if test "$build_version" != "$build_rev_tag"; then
@@ -50,7 +52,7 @@ CWD=`pwd`
 #(cd $HOME_TMP_DIR && zip -u -r $CWD/home-tmp.zip *)
 (
     set -e
-    ts="$(git log -1 --pretty="format:%ad" --date=format:"%Y%m%d%H%M")"
+    ts="$(git log -1 --pretty="format:%ad" --date=iso | sed -e 's/[- :]//g' | head -c12)"
     cd /tmp/openitg-home-tmp
     find . -print0 | xargs -0 touch -t "$ts"
     find . | sort | xargs -d '\n' zip -X "$CWD/$NAME.zip"

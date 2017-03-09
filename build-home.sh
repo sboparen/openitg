@@ -12,4 +12,4 @@ else
     make -j$1
 fi
 
-strip --strip-unneeded src/openitg
+strip --strip-unneeded --remove-section=.note.gnu.build-id src/openitg
