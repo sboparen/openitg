@@ -2,9 +2,12 @@
 set -e
 cd "$(dirname "$(readlink -f ${BASH_SOURCE[0]})")"
 
-# Create links for data shared between versions.
+# Create link for the Songs folder.
 ln -s ../Songs . || true
-ln -s ../../MachineProfile Data/ || true
+
+# If Data/MachineProfile isn't a directory then it seems to use
+# ~/.openitg/Data/MachineProfile instead, which I think is better.
+touch Data/MachineProfile
 
 # Create or update launcher on desktop.
 cat >~/Desktop/OpenITG.desktop <<EOF
