@@ -583,8 +583,8 @@ struct VideoCardDefaults
 	{
 		"OpenGL",	// This matches all drivers in Mac and Linux. -Chris
 		"opengl",
-		640,480,
-		16,16,16,
+		1024,768,
+		32,32,32,
 		2048,
 		true		// Right now, they've got to have NVidia or ATi Cards anyway..
 	},
